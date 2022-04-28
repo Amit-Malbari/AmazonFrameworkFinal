@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite" parallel="methods" thread-count="3" data-provider-thread-count="2">
+    <listeners>
+        <listener class-name="listeners.Listener"></listener>
+    </listeners>
+    <test name="AmazonTest">
+        <classes>
+            <class name="tests.AmazonTest">
+            </class>
+        </classes>
+    </test>
+</suite>
