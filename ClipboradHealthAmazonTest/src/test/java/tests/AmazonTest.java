@@ -2,9 +2,6 @@ package tests;
 
 import static org.testng.Assert.assertEquals;
 
-import java.util.Map;
-
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import pages.AmazonHomePage;

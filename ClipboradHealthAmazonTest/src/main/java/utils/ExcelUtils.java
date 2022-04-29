@@ -1,7 +1,6 @@
 package utils;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,10 +17,11 @@ public final class ExcelUtils {
     private ExcelUtils(){
     }
 
-    public static List<Map<String, String>> getTestDetails(){
+    public static List<Map<String, String>> getTestDetails() throws IOException{
         List<Map<String,String>> list = null;
+        XSSFWorkbook workbook = null;
         try(FileInputStream fs = new FileInputStream(FrameworkConstants.getExcelRunManager());) {
-            XSSFWorkbook workbook = new XSSFWorkbook(fs);
+            workbook = new XSSFWorkbook(fs);
             XSSFSheet sheet = workbook.getSheet("Sheet1");
             int rowNum = sheet.getLastRowNum();
             int colNum = sheet.getRow(0).getLastCellNum();
@@ -36,11 +36,12 @@ public final class ExcelUtils {
                 }
                 list.add(map);
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         }
         catch (IOException e) {
             e.printStackTrace();
+        }
+        finally {
+        	workbook.close();
         }
         return list;
     }

@@ -20,7 +20,6 @@ public final class AmazonHomePage extends BasePage {
 	
 	private static final String MENUITEM="//div[@id='hmenu-content']//*[text()='%s']";
 	private static final String CHECKBOX="//div[@id='s-refinements']//span[text()='%s']/preceding-sibling::div//input";
-	private static final String SORTBYSELECTION="//div[@class='a-popover-wrapper']//a[text()='%s']/preceding-sibling::div//input";
 	private static final String ITEM="(//div[@class='a-section aok-relative s-image-square-aspect'])[%s]";
 	
     public AmazonHomePage clickAllLink(){
@@ -47,18 +46,22 @@ public final class AmazonHomePage extends BasePage {
     	return this;
     }
     
-    public AmazonHomePage checkCheckBox(String filter) {	
+    public AmazonHomePage checkCheckBox(String filter) {
+    	refreshPage();
     	scrollToElement(DynamicXpathUtils.getModifiedXpath(CHECKBOX, filter));
-    	clickByJs(DynamicXpathUtils.getModifiedXpath(CHECKBOX, filter),WaitStrategy.CLICKABLE, filter+" checkbox");
+    	clickByJs(DynamicXpathUtils.getModifiedXpath(CHECKBOX, filter),WaitStrategy.VISIBLE, filter+" checkbox");
     	return this;
     }
     
     public AmazonHomePage selectSortBy(String sortByValue) {
+    	refreshPage();
+    	scrollToTop();
     	selectDropDownByVisibleText(sortBy, sortByValue, WaitStrategy.VISIBLE, WaitType.LONGWAIT,"Sort By: dropdown");
     	return this;
     }
     
     public AmazonHomePage itemSelectionByIndex(String itemByIndex) {
+    	refreshPage();
     	scrollToElement(DynamicXpathUtils.getModifiedXpath(ITEM, itemByIndex));
     	clickByJs(DynamicXpathUtils.getModifiedXpath(ITEM, itemByIndex),WaitStrategy.CLICKABLE, "Item Selection");
     	return this;

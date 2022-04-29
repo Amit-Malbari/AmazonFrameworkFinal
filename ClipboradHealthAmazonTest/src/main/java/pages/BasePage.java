@@ -39,7 +39,19 @@ public class BasePage {
     
     protected void scrollToElement(By by){
     	WebElement element=ExplicitWaitFactory.performExplicitWait(by,WaitStrategy.PRESENCE);
-        ((JavascriptExecutor) DriverManager.getDriver()).executeScript("arguments[0].scrollIntoView(true);", element); 
+        ((JavascriptExecutor) DriverManager.getDriver()).executeScript("arguments[0].scrollIntoView();", element); 
+    }
+    
+    protected void waitForAllElementVisibility(By by){
+    	ExplicitWaitFactory.performExplicitWait(by,WaitStrategy.VISIBLE,WaitType.LONGWAIT);	
+    }
+    
+    protected void refreshPage(){
+    	DriverManager.getDriver().navigate().refresh();
+    }
+    
+    protected void scrollToTop(){
+    	((JavascriptExecutor) DriverManager.getDriver()).executeScript("window.scrollTo(0, 0);"); 
     }
     
     protected void clickByJs(By by,WaitStrategy waitStrategy,String elementName){
