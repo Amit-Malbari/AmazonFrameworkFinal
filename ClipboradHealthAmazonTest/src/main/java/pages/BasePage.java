@@ -42,10 +42,6 @@ public class BasePage {
         ((JavascriptExecutor) DriverManager.getDriver()).executeScript("arguments[0].scrollIntoView();", element); 
     }
     
-    protected void waitForAllElementVisibility(By by){
-    	ExplicitWaitFactory.performExplicitWait(by,WaitStrategy.VISIBLE,WaitType.LONGWAIT);	
-    }
-    
     protected void refreshPage(){
     	DriverManager.getDriver().navigate().refresh();
     }
