@@ -26,7 +26,7 @@ public final class DriverFactory {
 
     public static WebDriver getDriver() throws MalformedURLException {
         WebDriver driver = null;
-        String runmode = (System.getProperty("RUNMODE") != null)?System.getProperty("RUNMODE"):ReadPropertyFile.getValue(ConfigProperties.RUNMODE);
+        String runmode = ReadPropertyFile.getValue(ConfigProperties.RUNMODE);
         String browser = (System.getProperty("BROWSER") != null)?System.getProperty("BROWSER"):ReadPropertyFile.getValue(ConfigProperties.BROWSER);
 
         if (browser.equalsIgnoreCase("chrome")) {
